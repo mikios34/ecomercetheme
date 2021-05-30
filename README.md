@@ -1,1 +1,2 @@
-# ecomercetheme
+# ecommercetheme
+Wrodpress theme development project
