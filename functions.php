@@ -19,4 +19,19 @@ function load_javascript(){
 }
 add_Action('wp_enqueue_scripts','load_javascript');
 
+
+    function arphabet_widgets_init() {
+
+        register_sidebar( array(
+            'name'          => 'page sidebar',
+            'id'            => 'page-sidebar',
+            'before_widget' => '<div class="py-3">',
+            'after_widget'  => '</div>',
+            'before_title'  => '<h4 class="font-italic">',
+            'after_title'   => '</h4>',
+        ) );
+    
+    }
+    add_action( 'widgets_init', 'arphabet_widgets_init' );
+
 ?>
