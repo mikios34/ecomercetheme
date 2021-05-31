@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-lg-3">
             <div class="sticky-top" style="top:50px">
-               
+                <?php get_sidebar();?>
             </div>
             
         </div>
