@@ -57,3 +57,5 @@ register_sidebar(
 
     );
     add_theme_support( 'custom-header', $args );
+
+    add_theme_support( 'title-tag' );
