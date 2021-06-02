@@ -1,11 +1,11 @@
 <?php
 
 function load_stylesheets(){
+   
     wp_register_style('bootsrtap-core', get_template_directory_uri().'/assets/css/bootstrap.min.css','stylesheet', get_template_directory_uri().'/style.css','',1,'all');
     wp_register_style('stylesheet', get_template_directory_uri().'/style.css','',1,'all');
     wp_enqueue_style('stylesheet');
     wp_enqueue_style('bootsrtap-core');
-
 }
 
 add_Action('wp_enqueue_scripts','load_stylesheets');
@@ -19,19 +19,41 @@ function load_javascript(){
 }
 add_Action('wp_enqueue_scripts','load_javascript');
 
+add_theme_support('menus');
+add_theme_support('post-thumbnails');
 
-    function arphabet_widgets_init() {
+register_nav_menus(
+    array(
+        'top-menu'=>'Top Menu',
+    )
+);
+//add_image_size('post_image',1100,750,true);
 
-        register_sidebar( array(
-            'name'          => 'page sidebar',
-            'id'            => 'page-sidebar',
-            'before_widget' => '<div class="py-3">',
-            'after_widget'  => '</div>',
-            'before_title'  => '<h4 class="font-italic">',
-            'after_title'   => '</h4>',
-        ) );
-    
+register_sidebar(
+    array(
+        'name'=>'Page Sidebar',
+        'id'=>'page-sidebar',
+        'class'=>'',
+        'before_title'=> '<h4>',
+        'after_title'=> '</h4>',
+
+    )
+    );
+
+    function mytheme_add_woocommerce_support() {
+        add_theme_support( 'woocommerce' );
     }
-    add_action( 'widgets_init', 'arphabet_widgets_init' );
+    
+    add_action( 'after_setup_theme', 'mytheme_add_woocommerce_support' );
 
-?>
+
+    $args= array(
+        'width'                  => 1946,
+        'height'                 => 200,
+        'flex-height'            => true,
+        'flex-width'             => true,
+        'default-image'=> get_template_directory_uri().'/assets/images/facial.jpg',
+        'uploads'=> true
+
+    );
+    add_theme_support( 'custom-header', $args );
