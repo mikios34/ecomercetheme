@@ -59,3 +59,43 @@ register_sidebar(
     add_theme_support( 'custom-header', $args );
 
     add_theme_support( 'title-tag' );
+
+    // Registering customiable section
+
+    function frontpageheader($wp_customize){
+        $wp_customize->add_section('header_image_section',array(
+            'title'=>"Customize Header Image",
+        ));
+        $wp_customize->add_setting('header_image_setting',array(
+            'default'=>'example headline text',
+        ));
+        $wp_customize->add_control(new Wp_Customize_Control( $wp_customize,'header_image_control',array(
+            'label'=> 'Head Line',
+            'section'=>'header_image_section',
+            'settings'=>'header_image_setting'
+        )));
+
+        
+        $wp_customize->add_setting('header_image_textarea',array(
+            'default'=>'example headline text',
+        ));
+        $wp_customize->add_control(new Wp_Customize_Control( $wp_customize,'header_image_textarea_control',array(
+            'label'=> 'Text Area',
+            'section'=>'header_image_section',
+            'settings'=>'header_image_textarea',
+            'type'=>'textarea'
+        )));
+
+
+        $wp_customize->add_setting('header_image'
+        );
+        $wp_customize->add_control(new Wp_Customize_Cropped_Image_Control( $wp_customize,'header_background_image_control',array(
+            'label'=> 'Background',
+            'section'=>'header_image_section',
+            'settings'=>'header_image',
+            'width'=>2500,
+            'height'=>900
+        )));
+
+    }
+    add_action( 'customize_register', 'frontpageheader' );
