@@ -28,17 +28,63 @@ register_nav_menus(
     )
 );
 //add_image_size('post_image',1100,750,true);
+function widget_location(){
+    register_sidebar(
+        array(
+            'name'=>'Right Sidebar',
+            'id'=>'page-sidebar',
+            'class'=>'',
+            'before_title'=> '<h4>',
+            'after_title'=> '</h4>',
+    
+        )
+        );
+    register_sidebar(
+        array(
+            'name'=>'Footer Area1',
+            'id'=>'footer-area1',
+            'class'=>'',
+            'before_title'=> '<h4>',
+            'after_title'=> '</h4>',
+    
+        )
+        );
+            
+    register_sidebar(
+        array(
+            'name'=>'Footer Area2',
+            'id'=>'footer-area2',
+            'class'=>'',
+            'before_title'=> '<h4>',
+            'after_title'=> '</h4>',
+    
+        )
+        );
+           
+    register_sidebar(
+        array(
+            'name'=>'Footer Area3',
+            'id'=>'footer-area3',
+            'class'=>'',
+            'before_title'=> '<h4>',
+            'after_title'=> '</h4>',
+    
+        )
+        );
+    register_sidebar(
+        array(
+            'name'=>'Footer Area4',
+            'id'=>'footer-area4',
+            'class'=>'',
+            'before_title'=> '<h4>',
+            'after_title'=> '</h4>',
+    
+        )
+        );
 
-register_sidebar(
-    array(
-        'name'=>'Page Sidebar',
-        'id'=>'page-sidebar',
-        'class'=>'',
-        'before_title'=> '<h4>',
-        'after_title'=> '</h4>',
+}
+add_action( 'widgets_init', 'widget_location');
 
-    )
-    );
 
     function mytheme_add_woocommerce_support() {
         add_theme_support( 'woocommerce' );
@@ -65,6 +111,7 @@ register_sidebar(
     function frontpageheader($wp_customize){
         $wp_customize->add_section('header_image_section',array(
             'title'=>"Customize Header Image",
+            'priority'=>30
         ));
         $wp_customize->add_setting('header_image_setting',array(
             'default'=>'example headline text',
@@ -97,5 +144,21 @@ register_sidebar(
             'height'=>900
         )));
 
+        $wp_customize->add_section('header_image_section',array(
+            'title'=>"Customize Feature Box",
+        ));
+        $wp_customize->add_setting('header_image_setting',array(
+            'default'=>'example headline text',
+        ));
+        $wp_customize->add_control(new Wp_Customize_Control( $wp_customize,'header_image_control',array(
+            'label'=> 'Head Line',
+            'section'=>'header_image_section',
+            'settings'=>'header_image_setting',
+            'type'=>'textarea'
+        )));
+      
+
+    
+
     }
-    add_action( 'customize_register', 'frontpageheader' );
+    add_action( 'customize_register', 'frontpageheader');
