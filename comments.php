@@ -31,9 +31,19 @@
                     );
                 }
             ?></h2>
-            
+            <ol>
+                <?php wp_list_comments(array(
+                    'style' => 'ol',
+                    'avatar_size'=> 70
+                )); ?>
+            </ol>
             <?php endif; ?>
 
-            
+            <?php 
+                the_comments_navigation();
+            if(!comments_open()) :  ?>
+                <p><?php esc_html_e('Comments are closed for this post', 'velvet'); ?></p>
     </section>
     <?php endif; ?>
+
+    <?php get_template_part('template-parts/custom-comment-form'); ?>
