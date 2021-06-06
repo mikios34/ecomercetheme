@@ -25,7 +25,19 @@
                 <?php
                         endwhile; else: ?>
  
-  
+    <p><?php _e('Sorry, no matches for: <em>' . get_search_query() . '</em>');?></p>
+
+    <?php endif; ?>
+    <nav>
+                    <ul class="nav">
+                        <li><?php next_posts_link(); ?></li>
+                        &nbsp;
+                        <li><?php previous_posts_link();?></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <aside class="col-sm-4">
                 <?php get_sidebar();?>
             </aside>
         </div>
