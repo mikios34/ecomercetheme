@@ -18,7 +18,17 @@
                         get_the_title()
                     );
                 }else{
-                   
+                    printf(
+                        _nx(
+                            '%1$s comment on &ldquo; %2$s &rdquo;',
+                            '%1$s comments on &ldquo; %2$s &rdquo;',
+                            $number,
+                            'comments title', 
+                            'velvet' 
+                        ),
+                        number_format_i18n($number),
+                        get_the_title()
+                    );
                 }
             ?></h2>
             
