@@ -176,18 +176,7 @@ add_action( 'widgets_init', 'widget_location');
     add_action ( 'after_setup_theme', 'wpse_add_title_support' );
     
     
-    function language_attributes( $doctype = 'html' ) {
-        echo get_language_attributes( $doctype );
-    }
-    function wp_body_open() {
-        /**
-         * Triggered after the opening body tag.
-         *
-         * @since 5.2.0
-         */
-        do_action( 'wp_body_open' );
-    }
-    
+  
     if(! isset($content_width)){
         $content_width = 660;
     }
