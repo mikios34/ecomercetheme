@@ -13,6 +13,7 @@
         <div class="col-lg-9">
             
             <?php if(have_posts()) : while(have_posts()) : the_post();?>
+            <div <?php post_class('custom-class'); ?>>
             <div class="blog-post">
                 <h1><?php the_title();?></h1>
                 <?php if(has_post_thumbnail()):?>
@@ -25,9 +26,17 @@
                                 </a>
                             </div>
             </div>
+            </div>
             
             
             <?php endwhile; else: endif;?>
+            <nav>
+                    <ul class="nav">
+                        <li><?php next_posts_link(); ?></li>
+                        &nbsp;
+                        <li><?php previous_posts_link();?></li>
+                    </ul>
+                </nav>
         </div>
     </div>
     

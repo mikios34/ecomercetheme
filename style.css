@@ -1,12 +1,17 @@
 /* 
 
-Theme Name: E-commerce theme
-Version: 1.0
+Theme Name: Gebeya
+Version: 1.1
 Theme URI: https://Ecommerce.com
-Auther: Group
+Author: Group
 Author URI: https://ecommercetheme.com
 Description: This is a custom wordpress theme developed for demonstration purposes.
-Tags: E-commerce,Shop,Gebeya
+Tags: E-commerce
+Text Domain: Gebeya
+Tested up to: 5.7
+Requires PHP: 7.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 
 
@@ -93,4 +98,45 @@ footer .container{
 .headerimage{
     width: 100%;
     height: 100;
+}
+
+
+.alignleft {
+    text-align: left
+}
+
+.aligncenter {
+    text-align: center;
+}
+
+.alignright {
+    text-align: right;
+}
+
+.wp-caption {
+    padding: 10px;
+}
+
+.wp-caption-text {
+    font-size: 0.9em;
+}
+
+.screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap: normal;
+}
+.gallery-caption {
+    font-size: 0.9em;
+}
+
+.bypostauthor {
+    font-style: italic;
 }

@@ -6,6 +6,9 @@ function load_stylesheets(){
     wp_register_style('stylesheet', get_template_directory_uri().'/style.css','',1,'all');
     wp_enqueue_style('stylesheet');
     wp_enqueue_style('bootsrtap-core');
+    if( is_singular() && comments_open() && get_option('thread_comments')){
+        wp_enqueue_script('comment-reply');
+    }
 }
 
 add_Action('wp_enqueue_scripts','load_stylesheets');
@@ -19,7 +22,7 @@ function load_javascript(){
 }
 add_Action('wp_enqueue_scripts','load_javascript');
 
-add_theme_support('menus');
+//add_theme_support('menus');
 add_theme_support('post-thumbnails');
 
 register_nav_menus(
@@ -115,16 +118,19 @@ add_action( 'widgets_init', 'widget_location');
         ));
         $wp_customize->add_setting('header_image_setting',array(
             'default'=>'example headline text',
+            'sanitize_callback' => 'wp_filter_nohtml_kses'
         ));
         $wp_customize->add_control(new Wp_Customize_Control( $wp_customize,'header_image_control',array(
             'label'=> 'Head Line',
             'section'=>'header_image_section',
-            'settings'=>'header_image_setting'
+            'settings'=>'header_image_setting',
+            'type'=>'text'
         )));
 
         
         $wp_customize->add_setting('header_image_textarea',array(
             'default'=>'example headline text',
+            'sanitize_callback' => 'wp_filter_nohtml_kses'
         ));
         $wp_customize->add_control(new Wp_Customize_Control( $wp_customize,'header_image_textarea_control',array(
             'label'=> 'Text Area',
@@ -134,7 +140,9 @@ add_action( 'widgets_init', 'widget_location');
         )));
 
 
-        $wp_customize->add_setting('header_image'
+        $wp_customize->add_setting('header_image',array(
+            'sanitize_callback' => 'esc_url_raw'
+        )
         );
         $wp_customize->add_control(new Wp_Customize_Cropped_Image_Control( $wp_customize,'header_background_image_control',array(
             'label'=> 'Background',
@@ -144,21 +152,50 @@ add_action( 'widgets_init', 'widget_location');
             'height'=>900
         )));
 
-        $wp_customize->add_section('header_image_section',array(
-            'title'=>"Customize Feature Box",
-        ));
-        $wp_customize->add_setting('header_image_setting',array(
-            'default'=>'example headline text',
-        ));
-        $wp_customize->add_control(new Wp_Customize_Control( $wp_customize,'header_image_control',array(
-            'label'=> 'Head Line',
-            'section'=>'header_image_section',
-            'settings'=>'header_image_setting',
-            'type'=>'textarea'
-        )));
+        
       
 
     
 
     }
     add_action( 'customize_register', 'frontpageheader');
+
+
+
+
+
+    function wpse_theme_setup() {
+
+        add_theme_support( 'automatic-feed-links' );
+    }
+    
+    
+    function wpse_add_title_support() {
+        add_theme_support( 'title-tag' );
+    }
+    add_action ( 'after_setup_theme', 'wpse_add_title_support' );
+    
+    
+    function language_attributes( $doctype = 'html' ) {
+        echo get_language_attributes( $doctype );
+    }
+    function wp_body_open() {
+        /**
+         * Triggered after the opening body tag.
+         *
+         * @since 5.2.0
+         */
+        do_action( 'wp_body_open' );
+    }
+    
+    if(! isset($content_width)){
+        $content_width = 660;
+    }
+    
+    add_editor_style($stylesheet = 'editor-style.css' );
+    
+    function new_excerpt_text(){
+        return '...';
+    }
+    
+    add_filter('excerpt_more', 'new_excerpt_text');

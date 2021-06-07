@@ -24,6 +24,13 @@
             </div>
             
             <?php endwhile; else: endif;?>
+            <nav>
+                    <ul class="nav">
+                        <li><?php next_posts_link(); ?></li>
+                        &nbsp;
+                        <li><?php previous_posts_link();?></li>
+                    </ul>
+                </nav>
         </div>
     </div>
     

@@ -46,4 +46,4 @@
     </section>
     <?php endif; ?>
 
-    <?php get_template_part('template-parts/custom-comment-form'); ?>
+    <?php get_template_part('template-parts/comment-form'); ?>
